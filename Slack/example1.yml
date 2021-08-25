@@ -12,8 +12,8 @@ pipelines:
           onExecute:
             - send_notification mySlack --text "in onexecute, past test commands" # replace 'mySlack' with the name of your Slack integration
           onSuccess:
-		        - # can use send_notification command here
-		      onFailure:
-		        - # can use send_notification command here
-		      onComplete:
-		        - # can use send_notification command here  
+            - # can use send_notification command here
+          onFailure:
+            - # can use send_notification command here
+          onComplete:
+            - # can use send_notification command here  
