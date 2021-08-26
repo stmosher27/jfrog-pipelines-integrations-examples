@@ -1,17 +1,16 @@
 pipelines:
-  - name: pipe1
+  - name: smtp_pipe
     steps:
       - name: test_step_1
         type: Bash
         configuration:
           integrations:
             - name: notifySMTP       # replace with friendly name of your SMTP Credentials integration
-          execution:
-            onSuccess:
-              # replace 'notifySMTP' with the name of your SMTP Credentials integration
-              - send_notification notifySMTP --recipients "buildalerts@mycompany.com" --subject "Build Succeeded" --body "built docker image 112.32.101.173:8081/docker-local/demo:$PIPELINE_NAME.$RUN_NUMBER"
-            onFailure:
-              # replace 'notifySMTP' with the name of your SMTP Credentials integration
-              - send_notification notifySMTP --recipients "buildalerts@mycompany.com" --subject "Build Failed" --body "FAILED: docker image 112.32.101.173:8081/docker-local/demo:$PIPELINE_NAME.$RUN_NUMBER"
-            onComplete:
-              # can use send_notification command here
+        execution:
+          onSuccess:
+            # replace 'notifySMTP' with the name of your SMTP Credentials integration
+            - send_notification notifySMTP --recipients "buildalerts@mycompany.com" --subject "Build Succeeded" --body "built docker image 112.32.101.173:8081/docker-local/demo:$PIPELINE_NAME.$RUN_NUMBER"
+          onFailure:
+            # replace 'notifySMTP' with the name of your SMTP Credentials integration
+            - send_notification notifySMTP --recipients "buildalerts@mycompany.com" --subject "Build Failed" --body "Failed docker image 112.32.101.173:8081/docker-local/demo:$PIPELINE_NAME.$RUN_NUMBER" 
+           
