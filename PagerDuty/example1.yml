@@ -1,0 +1,13 @@
+pipelines:
+  - name: pipeline_pd
+    steps:
+      - name: bash_pagerduty_success
+        type: Bash
+        configuration:
+          integrations:
+            - name: myPagerDuty
+        execution:
+          onStart:
+            - echo "starting"
+          onExecute:
+            - send_notification pagerduty -text "hello world from JFrog Pipelines run number $run_number"
