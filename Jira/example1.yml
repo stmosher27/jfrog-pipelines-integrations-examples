@@ -1,0 +1,31 @@
+resources:
+  - name: my_repo
+    type: GitRepo
+    configuration:
+      gitProvider: MyGithub
+      path: myrepo/myproject
+
+pipelines:
+  - name: jira_ticket_example
+    configuration:
+      environmentVariables:
+        readOnly:
+          NOTIFY_PROJECT_ID: "DEMO"            # Jira project key for all tickets we create
+          NOTIFY_TYPE: "Bug"                   # Jira issue type for all tickets we create
+    steps:
+    ### with jira for log attachment
+      - name: BuildSample
+        type: MvnBuild
+        configuration:
+          sourceLocation: artifactory-maven-plugin-example
+          configFileLocation: .
+          configFileName: config
+          mvnCommand: "install -P release --log-file ${step_tmp_dir}/log.txt"
+          inputResources:
+            - name: my_repo
+          integrations:
+            - name: myArtifactory
+            - name: myJira
+        execution:
+          onFailure:
+            - send_notification myJira --attach-file "$step_tmp_dir/log.txt" --description "Failure occured in $pipeline_name - $step_name" --summary "$step_name has failed" 
