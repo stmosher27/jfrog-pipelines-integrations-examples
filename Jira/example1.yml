@@ -1,5 +1,5 @@
 resources:
-  - name: my_repo
+  - name: my_repo_1
     type: GitRepo
     configuration:
       gitProvider: MyGithub
@@ -22,7 +22,7 @@ pipelines:
           configFileName: config
           mvnCommand: "install -P release --log-file ${step_tmp_dir}/log.txt"
           inputResources:
-            - name: my_repo
+            - name: my_repo_1
           integrations:
             - name: myArtifactory
             - name: myJira
