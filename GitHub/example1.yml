@@ -11,7 +11,7 @@ resources:
       path: {{ .Values.myRepo.path }}
       branches:
         # Specifies which branches will trigger dependent steps
-        include: master
+        include: main
 
   - name: npm_buildinfo_jfp_example
     type: BuildInfo
