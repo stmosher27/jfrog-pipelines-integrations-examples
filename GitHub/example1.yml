@@ -8,7 +8,7 @@ resources:
       # SCM integration where the repository is located
       gitProvider: {{ .Values.myRepo.gitProvider }}
       # Repository path, including org name/repo name
-      path: stmosher27/jfrog-pipelines-integrations-examples/GitHub/
+      path: {{ .Values.myRepo.path }}
       branches:
         # Specifies which branches will trigger dependent steps
         include: main
