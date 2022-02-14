@@ -16,7 +16,7 @@ resources:
   - name: npm_buildinfo_jfp_example
     type: BuildInfo
     configuration:
-      sourceArtifactory: art
+      sourceArtifactory: artifactory_integration
 
 pipelines:
   - name: npm_pipeline_jfp_example
