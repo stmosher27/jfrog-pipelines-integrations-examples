@@ -1,13 +1,14 @@
 {
-  "name": "npm-example",
-  "version": "0.0.3",
+  "name": "node-js-sample",
+  "version": "0.2.0",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
   "scripts": {
-    "start": "node helloworld"
+    "start": "node index.js"
   },
 
   "dependencies": {
-    "send": "^0.16.2",
-    "ansi-regex": "4.1.0"
+    "send": "^0.16.2"
   },
   "devDependencies": {
     "debug": "^4.1.1"
